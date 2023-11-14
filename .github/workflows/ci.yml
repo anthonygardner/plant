@@ -27,15 +27,15 @@ jobs:
 
       - name: Build
         run: |
-          ./scripts/build.sh
+          ./scripts/build-ci.sh
 
       - name: Run mypy
         run: |
-          source ./venv/bin/active && mypy .
+          mypy .
 
       - name: Run ruff
         run: |
-          source ./venv/bin/active && ruff .
+          ruff .
 
       - name: Set up clang-format
         run: |
