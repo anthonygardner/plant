@@ -31,11 +31,11 @@ jobs:
 
       - name: Run pyright
         run: |
-          pyright .
+          source .venv/bin/activate && pyright .
 
       - name: Run ruff
         run: |
-          ruff .
+          source .venv/bin/activate && ruff .
 
       - name: Set up clang-format
         run: |
