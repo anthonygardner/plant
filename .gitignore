@@ -2,3 +2,6 @@ api/
 build/
 extern/
 .venv/
+
+**/__pycache__/
+**/*.egg-info/
