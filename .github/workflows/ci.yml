@@ -29,13 +29,13 @@ jobs:
         run: |
           ./scripts/build.sh
 
-      - name: Run pyright
+      - name: Run mypy
         run: |
-          pyright .
+          source ./venv/bin/active && mypy .
 
       - name: Run ruff
         run: |
-          ruff .
+          source ./venv/bin/active && ruff .
 
       - name: Set up clang-format
         run: |
