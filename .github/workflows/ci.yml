@@ -7,17 +7,20 @@ on:
     branches: [ "master" ]
 
 jobs:
+
     ci:
+
       runs-on: ubuntu-latest
 
       steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: C, C++: Set up clang-format
+      - name: Set up clang-format
         run: |
           apt-get install clang-format
-      - name: C, C++: Run clang-format
+
+      - name: Run clang-format
         run: |
           clang-format . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
 
@@ -25,19 +28,23 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.12"
+
       - name: Upgrade pip
         run: |
           python3 -m pip install --upgrade pip
-      - name: Python: Run pyright
+
+      - name: Run pyright
         run: |
           pyright .
-      - name: Python: Run ruff
+
+      - name: Run ruff
         run: |
           ruff .
 
       - name: Build
         run: |
           ./scripts/build.sh
+
       - name: Test
         run: |
           ./scripts/test.sh
