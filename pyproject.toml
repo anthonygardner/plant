@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plant"
+version = "0.0.1"
+authors = [
+  { name = "Anthony Gardner" },
+]
+maintainers = [
+  { name = "Anthony Gardner" },
+]
+description = "Python Library for Autonomous Navigation and Tracking"
+requires-python = ">=3.12"
+classifiers = [
+  "Programming Language :: Python :: 3",
+]
+dependencies = [
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-s"
+testpaths = ["tests"]
