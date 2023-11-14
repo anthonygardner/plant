@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+    ci:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v3
+
+      - name: C, C++: Run clang-format
+        run: |
+          clang-format . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
+      - name: C, C++: Run clang-format
+        run: |
+          clang-format . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.12"
+      - name: Upgrade pip
+        run: |
+          python3 -m pip install --upgrade pip
+      - name: Python: Run pyright
+        run: |
+          pyright .
+      - name: Python: Run ruff
+        run: |
+          ruff .
+
+      - name: Build
+        run: |
+          ./scripts/build.sh
+      - name: Test
+        run: |
+          ./scripts/test.sh
