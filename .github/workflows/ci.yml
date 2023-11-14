@@ -25,6 +25,10 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
 
+      - name: Build
+        run: |
+          ./scripts/build.sh
+
       - name: Run pyright
         run: |
           pyright .
@@ -40,10 +44,6 @@ jobs:
       - name: Run clang-format
         run: |
           find . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
-
-      - name: Build
-        run: |
-          ./scripts/build.sh
 
       - name: Test
         run: |
