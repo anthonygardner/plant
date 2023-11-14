@@ -2,11 +2,7 @@
 
 ## Overview
 
-`plant` is a Python Library for Autonomous Navigation and Tracking research. Current areas of interest include:
-
-- Computer vision
-- Position and attitude estimation
-- Control algorithms
+`plant` is a Python Library for Autonomous Navigation and Tracking research.
 
 > [!NOTE]
 > This repository is currently under construction.
