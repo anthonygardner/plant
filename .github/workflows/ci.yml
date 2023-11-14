@@ -31,11 +31,19 @@ jobs:
 
       - name: Run mypy
         run: |
+<<<<<<< HEAD
           source ./venv/bin/active && mypy .
 
       - name: Run ruff
         run: |
           source ./venv/bin/active && ruff .
+=======
+          source .venv/bin/activate && pyright .
+
+      - name: Run ruff
+        run: |
+          source .venv/bin/activate && ruff .
+>>>>>>> 91ce5914e776d7bc98163e608d751a4e2ffef25c
 
       - name: Set up clang-format
         run: |
