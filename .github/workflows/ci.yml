@@ -11,11 +11,12 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: C, C++: Run clang-format
+      - name: C, C++: Set up clang-format
         run: |
-          clang-format . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
+          apt-get install clang-format
       - name: C, C++: Run clang-format
         run: |
           clang-format . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
