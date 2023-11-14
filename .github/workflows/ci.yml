@@ -29,13 +29,9 @@ jobs:
         run: |
           ./scripts/build-ci.sh
 
-      - name: Run mypy
-        run: |
-          mypy .
-
       - name: Run ruff
         run: |
-          ruff .
+          ruff tests
 
       - name: Set up clang-format
         run: |

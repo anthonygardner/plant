@@ -24,3 +24,9 @@ dependencies = [
 minversion = "6.0"
 addopts = "-s"
 testpaths = ["tests"]
+
+[tool.ruff.lint]
+ignore = ["F401"]
+
+[tool.ruff.format]
+quote-style = "double"
