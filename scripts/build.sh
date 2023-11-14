@@ -28,7 +28,7 @@ mv $BUILD_DIR/*.so $API_DIR/core.so
 
 if [ ! -d "$VENV_DIR" ]; then
   python3.12 -m venv $VENV_DIR
-  python3.12 -m pip install pytest --target=$VENV_DIR/lib/python3.12/site-packages
+  python3.12 -m pip install -r $CWD/requirements.txt --target=$VENV_DIR/lib/python3.12/site-packages
 fi
 
 source $VENV_DIR/bin/activate && python3 -m pip install $CWD

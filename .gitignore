@@ -1,6 +1,6 @@
-api/
 build/
 extern/
+plant/
 .venv/
 
 **/__pycache__/
