@@ -7,6 +7,8 @@ readonly API_DIR=$(realpath $CWD/plant)
 readonly BUILD_DIR=$(realpath $CWD/build)
 readonly VENV_DIR=$(realpath $CWD/.venv)
 
+git submodule update --init --recursive
+
 if [ -e "$API_DIR/plant.so" ]; then
   rm $API_DIR/plant.so
 fi
