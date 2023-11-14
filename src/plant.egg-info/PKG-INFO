@@ -1,9 +1,0 @@
-Metadata-Version: 2.1
-Name: plant
-Version: 0.0.1
-Summary: Python Library for Autonomous Navigation and Tracking
-Author: Anthony Gardner
-Maintainer: Anthony Gardner
-Classifier: Programming Language :: Python :: 3
-Requires-Python: >=3.12
-Requires-Dist: pytest

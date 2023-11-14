@@ -1,7 +1,0 @@
-pyproject.toml
-src/plant.egg-info/PKG-INFO
-src/plant.egg-info/SOURCES.txt
-src/plant.egg-info/dependency_links.txt
-src/plant.egg-info/requires.txt
-src/plant.egg-info/top_level.txt
-tests/test_plant.py
