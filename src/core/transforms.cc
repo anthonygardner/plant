@@ -1,7 +1,7 @@
 /** @file Source file for common reference frame transformations */
 
-#include "structs.h"
-#include "transforms.h"
+#include "./structs.h"
+#include "./transforms.h"
 
 namespace core {
 namespace transforms {

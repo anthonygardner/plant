@@ -1,10 +1,7 @@
-#ifndef STRUCTS_H
-#define STRUCTS_H
+#pragma once
 
 typedef struct {
     float x;
     float y;
     float z;
 } Vector3f;
-
-#endif // STRUCTS_H
