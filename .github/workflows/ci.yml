@@ -25,10 +25,6 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
 
-      - name: Build
-        run: |
-          ./scripts/build-ci.sh
-
       - name: Run ruff
         run: |
           ruff tests
@@ -41,6 +37,6 @@ jobs:
         run: |
           find . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
 
-      - name: Test
+      - name: Build and test
         run: |
-          ./scripts/test.sh
+          ./scripts/build-ci.sh && ./scripts/test.sh
