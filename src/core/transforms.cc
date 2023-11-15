@@ -3,6 +3,7 @@
 #include "./structs.h"
 #include "./transforms.h"
 
+namespace plant {
 namespace core {
 namespace transforms {
 
@@ -22,3 +23,4 @@ namespace transforms {
 
 } // namespace transforms
 } // namespace core
+} // namespace plant

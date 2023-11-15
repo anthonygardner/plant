@@ -16,7 +16,8 @@ project(
 add_subdirectory(extern/pybind11)
 
 pybind11_add_module(
-  core
-  ${CMAKE_SOURCE_DIR}/src/core/core.cc
+  _plant
+  ${CMAKE_SOURCE_DIR}/src/plant.cc
   ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
+  ${CMAKE_SOURCE_DIR}/src/sensors/imu.cc
 )

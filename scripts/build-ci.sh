@@ -3,7 +3,7 @@
 set -eou pipefail
 
 readonly CWD=$(realpath .)
-readonly API_DIR=$(realpath $CWD/plant)
+readonly API_DIR=$(realpath $CWD/api/plant)
 readonly BUILD_DIR=$(realpath $CWD/build)
 
 git submodule update --init --recursive
@@ -25,6 +25,6 @@ else
   cmake .. && cmake --build . -j 16
 fi
 
-mv $BUILD_DIR/*.so $API_DIR/core.so
+mv $BUILD_DIR/*.so $API_DIR/_plant.so
 
 python3 -m pip install -r $CWD/requirements.txt && python3 -m pip install $CWD

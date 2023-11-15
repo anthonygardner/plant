@@ -1,7 +1,8 @@
-#pragma once
-
 /** @file Header file for common reference frame transformations */
 
+#pragma once
+
+namespace plant {
 namespace core {
 namespace transforms {
 
@@ -10,3 +11,4 @@ namespace transforms {
 
 } // namespace transforms
 } // namespace core
+} // namespace plant
