@@ -27,4 +27,5 @@ fi
 
 mv $BUILD_DIR/*.so $API_DIR/_plant.so
 
-python3 -m pip install -r $CWD/requirements.txt && python3 -m pip install $CWD
+python3 -m pip install -r $CWD/requirements.txt
+python3 -m pip install $CWD
