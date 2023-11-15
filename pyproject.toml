@@ -20,12 +20,6 @@ dependencies = [
   "pytest",
 ]
 
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.package-data]
-plant = ["*.so"]
-
 [tool.setuptools.packages.find]
 where = ["api"]
 include = ["plant"]
