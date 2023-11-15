@@ -31,7 +31,9 @@ jobs:
 
       - name: Build and test
         run: |
-          ./scripts/build-ci.sh && ./scripts/test.sh
+          ./scripts/build-ci.sh
+          ls -a ./api/plant
+          ./scripts/test.sh
 
       - name: Run clang-format
         run: |
