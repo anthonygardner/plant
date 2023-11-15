@@ -25,7 +25,7 @@ where = ["api"]
 include = ["plant"]
 
 [tool.setuptools.package-data]
-_plant = ["_plant.so"]
+_plant = ["api/plant/_plant.so"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
