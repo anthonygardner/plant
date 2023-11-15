@@ -16,6 +16,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up clang-format
+        run: |
+          sudo apt-get install clang-format
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v3
         with:
@@ -25,18 +29,14 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
 
-      - name: Run ruff
+      - name: Build and test
         run: |
-          ruff tests
-
-      - name: Set up clang-format
-        run: |
-          sudo apt-get install clang-format
+          ./scripts/build-ci.sh && ./scripts/test.sh
 
       - name: Run clang-format
         run: |
           find . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
 
-      - name: Build and test
+      - name: Run ruff
         run: |
-          ./scripts/build-ci.sh && ./scripts/test.sh
+          ruff tests
