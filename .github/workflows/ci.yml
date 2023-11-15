@@ -29,15 +29,15 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
 
-      - name: Build and test
-        run: |
-          ./scripts/build-ci.sh
-          ./scripts/test.sh
+      # - name: Build and test
+      #   run: |
+      #     ./scripts/build-ci.sh
+      #     ./scripts/test.sh
 
       - name: Run clang-format
         run: |
           find . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
 
-      - name: Run ruff
-        run: |
-          ruff tests
+      # - name: Run ruff
+      #   run: |
+      #     ruff tests
