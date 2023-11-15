@@ -1,0 +1,2 @@
+[package_data]
+* = api/plant/_plant.so
