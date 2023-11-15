@@ -1,2 +1,1 @@
-[package_data]
-* = api/plant/_plant.so
+include api/plant/_plant.so
