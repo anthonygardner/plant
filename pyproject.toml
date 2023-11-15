@@ -20,15 +20,12 @@ dependencies = [
   "pytest",
 ]
 
-[tool.setuptools]
-include-package-data = true
-
 [tool.setuptools.packages.find]
 where = ["api"]
 include = ["plant"]
 
 [tool.setuptools.package-data]
-_plant = ["_plant.so"]
+plant = ["*.so"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
