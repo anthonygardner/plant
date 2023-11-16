@@ -1,5 +1,7 @@
 /** @file Source file for generating Python API with pybind11 */
 
+#include <string>
+
 #include <pybind11/pybind11.h>
 
 #include "./core/structs.h"
@@ -36,6 +38,7 @@ PYBIND11_MODULE(_plant, m) {
 
   // create the "transforms" module and add methods to it
   auto m_transforms = m.def_submodule("transforms");
+
   m_transforms.def("dot_v3f", &plant::core::transforms::dot_v3f);
   m_transforms.def("cross_v3f", &plant::core::transforms::cross_v3f);
 
@@ -43,7 +46,11 @@ PYBIND11_MODULE(_plant, m) {
   auto m_sensors = m.def_submodule("sensors");
 
   py::class_<plant::sensors::IMU>(m_sensors, "IMU")
-    .def(py::init<float, float>())
+    .def(py::init<>())
+    .def(py::init<float, float>(), py::arg("wx"), py::arg("wy"))
     .def_readwrite("wx", &plant::sensors::IMU::wx)
-    .def_readwrite("wy", &plant::sensors::IMU::wy);
+    .def_readwrite("wy", &plant::sensors::IMU::wy)
+    .def("__repr__", [](const plant::sensors::IMU &imu) {
+      return "[" + std::to_string(imu.wx) + ", " + std::to_string(imu.wy) + "]";
+    }, py::is_operator());
 }

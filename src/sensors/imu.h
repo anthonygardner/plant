@@ -7,17 +7,16 @@
 namespace plant {
 namespace sensors {
 
-    class IMU {
-    public:
-      float wx;
-      float wy;
+class IMU {
+ public:
+   float wx;
+   float wy;
 
-      IMU(float wx_, float wy_);
+  IMU() : wx(0.0), wy(0.0) {};
+  IMU(float wx, float wy) : wx(wx), wy(wy) {};
 
-    private:
-      float _wx;
-      float _wy;
-    };
+  ~IMU() {};
+};
 
 } // namespace sensors
 } // namespace plant
