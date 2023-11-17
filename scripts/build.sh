@@ -35,4 +35,4 @@ fi
 
 source $VENV_DIR/bin/activate && python3 -m pip install $CWD
 
-gcc $CWD/src/cli.cc -o $VENV_DIR/bin/plant-cli
+gcc $CWD/src/cli.c -o $VENV_DIR/bin/plant-cli

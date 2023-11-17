@@ -30,4 +30,4 @@ mv $BUILD_DIR/*.so $API_DIR/_plant.so
 python3 -m pip install -r $CWD/requirements.txt
 python3 -m pip install $CWD
 
-gcc $CWD/src/cli.cc -o $VENV_DIR/bin/plant-cli
+gcc $CWD/src/cli.c -o $VENV_DIR/bin/plant-cli
