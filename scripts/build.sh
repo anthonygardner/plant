@@ -9,8 +9,8 @@ readonly VENV_DIR=$(realpath $CWD/.venv)
 
 git submodule update --init --recursive
 
-if [ -e "$API_DIR/plant.so" ]; then
-  rm $API_DIR/plant.so
+if [ -e "$API_DIR/_plant.so" ]; then
+  rm $API_DIR/_plant.so
 fi
 
 if [ -d "$BUILD_DIR" ]; then
@@ -26,13 +26,15 @@ else
   cmake .. && cmake --build . -j 16
 fi
 
-mv $BUILD_DIR/*.so $API_DIR/_plant.so
+mv $BUILD_DIR/_plant*.so $API_DIR/_plant.so
 
-if [ ! -d "$VENV_DIR" ]; then
-  python3.12 -m venv $VENV_DIR
-  python3.12 -m pip install -r $CWD/requirements.txt --target=$VENV_DIR/lib/python3.12/site-packages
+if [ -d "$VENV_DIR" ]; then
+    rm -rf $VENV_DIR
 fi
 
-source $VENV_DIR/bin/activate && python3 -m pip install $CWD
+python3.12 -m venv $VENV_DIR && source $VENV_DIR/bin/activate
+python3 -m pip install --upgrade build pip setuptools
+python3 -m pip install -r $CWD/requirements.txt
+python3 -m build $CWD && python3 -m pip install $CWD
 
 gcc $CWD/src/cli.c -o $VENV_DIR/bin/plant-cli
