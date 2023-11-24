@@ -22,7 +22,6 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["api"]
-# include = ["plant"]
 
 [tool.setuptools.package-data]
 plant = ["_plant.so"]
