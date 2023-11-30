@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "../core/structs.h"
+#include "../core/types.h"
 
 namespace plant {
 namespace sensors {
@@ -14,8 +14,6 @@ class IMU {
 
   IMU() : wx(0.0), wy(0.0) {};
   IMU(float wx, float wy) : wx(wx), wy(wy) {};
-
-  ~IMU() {};
 };
 
 } // namespace sensors

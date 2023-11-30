@@ -4,31 +4,31 @@
 
 #include <pybind11/pybind11.h>
 
-#include "./core/structs.h"
 #include "./core/transforms.h"
+#include "./core/types.h"
 #include "./sensors/imu.h"
 
 namespace py = pybind11;
 
 PYBIND11_MODULE(_plant, m) {
-  // create the "structs" module and overload operators
-  auto m_structs = m.def_submodule("structs");
+  // create the "types" module and overload operators
+  auto m_types = m.def_submodule("types");
 
-  py::class_<plant::core::Vector3f>(m_structs, "Vector3f")
+  py::class_<plant::core::types::Vector3f>(m_types, "Vector3f")
     .def(py::init<float, float, float>())
-    .def_readwrite("x", &plant::core::Vector3f::x)
-    .def_readwrite("y", &plant::core::Vector3f::y)
-    .def_readwrite("z", &plant::core::Vector3f::z)
-    .def("__add__", [](const plant::core::Vector3f &u, plant::core::Vector3f v) {
-      plant::core::Vector3f w = {
+    .def_readwrite("x", &plant::core::types::Vector3f::x)
+    .def_readwrite("y", &plant::core::types::Vector3f::y)
+    .def_readwrite("z", &plant::core::types::Vector3f::z)
+    .def("__add__", [](const plant::core::types::Vector3f &u, plant::core::types::Vector3f v) {
+      plant::core::types::Vector3f w = {
         u.x + v.x,
         u.y + v.y,
         u.z + v.z
       };
       return w;
     }, py::is_operator())
-    .def("__sub__", [](const plant::core::Vector3f &u, plant::core::Vector3f v) {
-      plant::core::Vector3f w = {
+    .def("__sub__", [](const plant::core::types::Vector3f &u, plant::core::types::Vector3f v) {
+      plant::core::types::Vector3f w = {
         u.x - v.x,
         u.y - v.y,
         u.z - v.z
@@ -36,25 +36,35 @@ PYBIND11_MODULE(_plant, m) {
       return w;
     }, py::is_operator());
 
-  py::class_<plant::core::LatLonAlt>(m_structs, "LatLonAlt")
+  py::enum_<plant::core::types::AltType>(m_types, "AltType")
+    .value("HeightAboveGeoid", plant::core::types::AltType::HeightAboveGeoid)
+    .value("HeightAboveEllipsoid", plant::core::types::AltType::HeightAboveEllipsoid)
+    .value("MeanSeaLevel", plant::core::types::AltType::MeanSeaLevel);
+
+  py::class_<plant::core::types::LatLonAlt>(m_types, "LatLonAlt")
+    .def(py::init<>())
+    .def(py::init<float, float, float, plant::core::types::AltType>(), py::arg("lat"), py::arg("lon"), py::arg("alt"), py::arg("alt_type"))
+    .def_readwrite("lat", &plant::core::types::LatLonAlt::lat)
+    .def_readwrite("lon", &plant::core::types::LatLonAlt::lon)
+    .def_readwrite("alt", &plant::core::types::LatLonAlt::alt)
+    .def_readwrite("alt_type", &plant::core::types::LatLonAlt::alt_type);
+
+  py::class_<plant::core::types::CartPos>(m_types, "CartPos")
     .def(py::init<>());
 
-  py::class_<plant::core::CartPos>(m_structs, "CartPos")
+  py::class_<plant::core::types::CartVel>(m_types, "CartVel")
     .def(py::init<>());
 
-  py::class_<plant::core::CartVel>(m_structs, "CartVel")
+  py::class_<plant::core::types::CartAcc>(m_types, "CartAcc")
     .def(py::init<>());
 
-  py::class_<plant::core::CartAcc>(m_structs, "CartAcc")
+  py::class_<plant::core::types::AttRpy>(m_types, "AttRpy")
     .def(py::init<>());
 
-  py::class_<plant::core::AttRpy>(m_structs, "AttRpy")
+  py::class_<plant::core::types::AttQuat>(m_types, "AttQuat")
     .def(py::init<>());
 
-  py::class_<plant::core::AttQuat>(m_structs, "AttQuat")
-    .def(py::init<>());
-
-  py::class_<plant::core::State>(m_structs, "State")
+  py::class_<plant::core::types::State>(m_types, "State")
     .def(py::init<>());
 
   // create the "transforms" module and add methods to it

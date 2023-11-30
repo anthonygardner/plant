@@ -1,9 +1,10 @@
-/** @file Header file for core data structures */
+/** @file Header file for core data types */
 
 #pragma once
 
 namespace plant {
 namespace core {
+namespace types {
 
 typedef struct {
     float x;
@@ -75,6 +76,7 @@ typedef struct {
     AttQuat q;
 } State;
 
+} // namespace types
 } // namespace core
 } // namespace plant
 
