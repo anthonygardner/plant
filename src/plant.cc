@@ -36,6 +36,27 @@ PYBIND11_MODULE(_plant, m) {
       return w;
     }, py::is_operator());
 
+  py::class_<plant::core::LatLonAlt>(m_structs, "LatLonAlt")
+    .def(py::init<>());
+
+  py::class_<plant::core::CartPos>(m_structs, "CartPos")
+    .def(py::init<>());
+
+  py::class_<plant::core::CartVel>(m_structs, "CartVel")
+    .def(py::init<>());
+
+  py::class_<plant::core::CartAcc>(m_structs, "CartAcc")
+    .def(py::init<>());
+
+  py::class_<plant::core::AttRpy>(m_structs, "AttRpy")
+    .def(py::init<>());
+
+  py::class_<plant::core::AttQuat>(m_structs, "AttQuat")
+    .def(py::init<>());
+
+  py::class_<plant::core::State>(m_structs, "State")
+    .def(py::init<>());
+
   // create the "transforms" module and add methods to it
   auto m_transforms = m.def_submodule("transforms");
 
