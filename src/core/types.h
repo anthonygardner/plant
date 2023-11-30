@@ -6,12 +6,6 @@ namespace plant {
 namespace core {
 namespace types {
 
-typedef struct {
-    float x;
-    float y;
-    float z;
-} Vector3f;
-
 enum class AltType {
     HeightAboveGeoid,
     HeightAboveEllipsoid,
@@ -25,6 +19,12 @@ enum class ReferenceFrame {
     NorthEastDown,
     Body
 };
+
+typedef struct {
+    float x;
+    float y;
+    float z;
+} Vector3f;
 
 typedef struct {
     float lat;
