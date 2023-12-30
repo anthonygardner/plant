@@ -13,6 +13,7 @@ project(
   LANGUAGES C CXX
 )
 
+add_subdirectory(extern/googletest)
 add_subdirectory(extern/pybind11)
 
 pybind11_add_module(
@@ -21,3 +22,22 @@ pybind11_add_module(
   ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
   ${CMAKE_SOURCE_DIR}/src/sensors/imu.cc
 )
+
+#===============================================================================
+# googletest
+
+enable_testing()
+
+add_executable(
+  v3f_test
+  ${CMAKE_SOURCE_DIR}/tests/v3f_test.cc
+  ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
+)
+
+target_link_libraries(
+  v3f_test
+  GTest::gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(v3f_test)

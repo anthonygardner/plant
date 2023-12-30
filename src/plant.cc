@@ -12,7 +12,7 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(_plant, m) {
   //====================================================================================================
-  // create the "types" module and overload operators
+  // create the "types" module and add data types to it
 
   auto m_types = m.def_submodule("types");
 
