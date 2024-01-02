@@ -13,8 +13,16 @@
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-## Workflow
+## Build and Test
+
+#### Python
 
 ```shell
 ./scripts/build.sh && ./scripts/test.sh
+```
+
+#### C++
+
+```shell
+./scripts/build.sh && cd build && ctest
 ```
