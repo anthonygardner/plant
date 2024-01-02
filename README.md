@@ -24,5 +24,6 @@
 #### C++
 
 ```shell
-./scripts/build.sh && cd build && ctest
+cmake -S . -B build && cmake --build build
+cd build && ctest
 ```

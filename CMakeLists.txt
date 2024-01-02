@@ -29,6 +29,18 @@ pybind11_add_module(
 enable_testing()
 
 add_executable(
+  parser_test
+  ${CMAKE_SOURCE_DIR}/tests/parser_test.cc
+  ${CMAKE_SOURCE_DIR}/src/utils/parser.cc
+)
+
+target_link_libraries(
+  parser_test
+  GTest::gtest_main
+  GTest::gmock_main
+)
+
+add_executable(
   v3f_test
   ${CMAKE_SOURCE_DIR}/tests/v3f_test.cc
   ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
@@ -40,4 +52,6 @@ target_link_libraries(
 )
 
 include(GoogleTest)
+
+gtest_discover_tests(parser_test)
 gtest_discover_tests(v3f_test)
