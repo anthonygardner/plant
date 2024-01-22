@@ -18,7 +18,7 @@
 #### C++
 
 ```shell
-cmake -S . -B build && cmake --build build
+cmake -S . -B build && cmake -DCMAKE_PREFIX_PATH=extern/yaml-cpp --build build
 cd build && ctest
 ```
 
