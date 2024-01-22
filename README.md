@@ -15,15 +15,15 @@
 
 ## Build and Test
 
-#### Python
-
-```shell
-./scripts/build.sh && ./scripts/test.sh
-```
-
 #### C++
 
 ```shell
 cmake -S . -B build && cmake --build build
 cd build && ctest
+```
+
+#### Python
+
+```shell
+./scripts/build.sh && ./scripts/test.sh
 ```

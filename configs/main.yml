@@ -1,0 +1,10 @@
+globals:
+  total time: 10 sec
+
+integrator:
+  type: rk4
+  step size: 0.01 sec
+
+agents:
+  name: spacecraft
+    - model: point mass

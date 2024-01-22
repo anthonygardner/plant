@@ -3,8 +3,6 @@
 #include "../src/core/transforms.h"
 #include "../src/core/types.h"
 
-// first argument is the name of the test suite
-// second argument is the name of the test within the test suite
 TEST(Vector3fTest, AdditionOperator) {
   plant::core::types::Vector3f u = {1.0, 2.0, 3.0};
   plant::core::types::Vector3f v = {-1.0, -2.0, -3.0};
