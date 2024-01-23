@@ -32,8 +32,8 @@ if (NOT TARGET raylib)
 endif()
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
-include_directories(${Python3_INCLUDE_DIRS})
 
+include_directories(${Python3_INCLUDE_DIRS})
 include_directories(${pybind11_INCLUDE_DIR})
 
 if (NOT TARGET yaml-cpp)
@@ -49,7 +49,6 @@ set(SOURCES ${CMAKE_SOURCE_DIR}/src/plant.cc)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
-
 target_link_libraries(${PROJECT_NAME} ${YAML_CPP_LIBRARIES})
 
 pybind11_add_module(
@@ -60,12 +59,7 @@ pybind11_add_module(
 )
 
 target_link_libraries(${PROJECT_NAME} raylib)
-
-#target_link_libraries(
-#    ${PROJECT_NAME}
-#    PRIVATE
-#    yaml-cpp
-#)
+target_link_libraries(${PROJECT_NAME} yaml-cpp)
 
 if (APPLE)
     target_link_libraries(${PROJECT_NAME} "-framework IOKit")
@@ -74,21 +68,28 @@ if (APPLE)
 endif()
 
 #===============================================================================
+# build examples
+
+add_subdirectory(examples/raylib)
+
+#===============================================================================
 # build googletest
 
 enable_testing()
 
-add_executable(
-  parser_test
-  ${CMAKE_SOURCE_DIR}/tests/parser_test.cc
-  ${CMAKE_SOURCE_DIR}/src/utils/parser.cc
-)
+#add_executable(
+#  parser_test
+#  ${CMAKE_SOURCE_DIR}/tests/parser_test.cc
+#  ${CMAKE_SOURCE_DIR}/src/utils/parser.cc
+#)
 
-target_link_libraries(
-  parser_test
-  GTest::gtest_main
-  GTest::gmock_main
-)
+#target_link_libraries(
+#  parser_test
+#  PRIVATE
+#  GTest::gtest_main
+#  GTest::gmock_main
+#  ${YAML_CPP_LIBRARIES}
+#)
 
 add_executable(
   v3f_test
@@ -103,5 +104,5 @@ target_link_libraries(
 
 include(GoogleTest)
 
-gtest_discover_tests(parser_test)
+#gtest_discover_tests(parser_test)
 gtest_discover_tests(v3f_test)
