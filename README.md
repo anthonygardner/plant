@@ -15,14 +15,14 @@
 
 ## Build Instructions
 
-#### C++ 
+###### C++ 
 
 ```shell
 cmake -S . -B build
 cmake --build build --target install
 ```
 
-#### Python Bindings
+###### Python bindings
 
 ```shell
 ./scripts/build.sh
@@ -30,20 +30,20 @@ cmake --build build --target install
 
 ## Running Tests / Examples
 
-##### GoogleTest Suite
+###### GoogleTest suite
 
 ```shell
 cd build && ctest
 ```
 
-##### Raylib Example
+###### Raylib example
 
 ```shell
 cd build/examples/raylib
 ./raylib_example
 ```
 
-##### pytest
+###### pytest
 
 ```shell
 ./scripts/test.sh
