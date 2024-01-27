@@ -13,17 +13,38 @@
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-## Build and Test
+## Build Instructions
 
-#### C++
+#### C++ 
 
 ```shell
-cmake -S . -B build && cmake -DCMAKE_PREFIX_PATH=extern/yaml-cpp --build build
+cmake -S . -B build
+cmake --build build --target install
+```
+
+#### Python Bindings
+
+```shell
+./scripts/build.sh
+```
+
+## Running Tests / Examples
+
+###### GoogleTest Suite
+
+```shell
 cd build && ctest
 ```
 
-#### Python
+###### Raylib Example
 
 ```shell
-./scripts/build.sh && ./scripts/test.sh
+cd build/examples/raylib
+./raylib_example
+```
+
+#### pytest
+
+```shell
+./scripts/test.sh
 ```
