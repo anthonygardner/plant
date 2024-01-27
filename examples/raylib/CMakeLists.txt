@@ -1,7 +1,7 @@
-add_executable(raylib_example main.c)
+cmake_minimum_required(VERSION 3.15)
 
-target_link_libraries(
-    raylib_example
-    PRIVATE
-    ../../extern/raylib
-)
+project(raylib_example)
+
+add_executable(${PROJECT_NAME} main.c)
+
+target_link_libraries(${PROJECT_NAME} raylib)

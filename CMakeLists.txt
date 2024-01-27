@@ -11,7 +11,7 @@ set(CMAKE_BUILD_TYPE Debug)
 cmake_policy(SET CMP0048 NEW)
 
 project(
-  plant
+  _plant
   DESCRIPTION "Python Library for Autonomous Navigation and Tracking"
   LANGUAGES C CXX
 )
@@ -45,17 +45,17 @@ include_directories(${YAML_CPP_INCLUDE_DIRS})
 #===============================================================================
 # build plant
 
-set(SOURCES ${CMAKE_SOURCE_DIR}/src/plant.cc)
+set(SOURCES ${PROJECT_SOURCE_DIR}/src/plant.cc)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${YAML_CPP_LIBRARIES})
 
 pybind11_add_module(
-  _plant
-  ${CMAKE_SOURCE_DIR}/src/plant.cc
-  ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
-  ${CMAKE_SOURCE_DIR}/src/sensors/imu.cc
+  plant
+  ${PROJECT_SOURCE_DIR}/src/plant.cc
+  ${PROJECT_SOURCE_DIR}/src/core/transforms.cc
+  ${PROJECT_SOURCE_DIR}/src/sensors/imu.cc
 )
 
 target_link_libraries(${PROJECT_NAME} raylib)
@@ -93,8 +93,8 @@ enable_testing()
 
 add_executable(
   v3f_test
-  ${CMAKE_SOURCE_DIR}/tests/v3f_test.cc
-  ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
+  ${PROJECT_SOURCE_DIR}/tests/v3f_test.cc
+  ${PROJECT_SOURCE_DIR}/src/core/transforms.cc
 )
 
 target_link_libraries(
