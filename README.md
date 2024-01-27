@@ -30,20 +30,20 @@ cmake --build build --target install
 
 ## Running Tests / Examples
 
-###### GoogleTest Suite
+##### GoogleTest Suite
 
 ```shell
 cd build && ctest
 ```
 
-###### Raylib Example
+##### Raylib Example
 
 ```shell
 cd build/examples/raylib
 ./raylib_example
 ```
 
-#### pytest
+##### pytest
 
 ```shell
 ./scripts/test.sh
