@@ -15,36 +15,29 @@
 
 ## Build Instructions
 
-###### C++ 
-
 ```shell
+git submodule update --init --recursive
 cmake -S . -B build
 cmake --build build --target install
 ```
 
-###### Python bindings
-
-```shell
-./scripts/build.sh
-```
-
 ## Running Tests / Examples
 
-###### GoogleTest suite
+###### GoogleTest Suite
 
 ```shell
 cd build && ctest
 ```
 
-###### Raylib example
+###### Python Test Suite
+
+```shell
+./scripts/test.sh
+```
+
+###### Raylib Example
 
 ```shell
 cd build/examples/raylib
 ./raylib_example
-```
-
-###### pytest
-
-```shell
-./scripts/test.sh
 ```

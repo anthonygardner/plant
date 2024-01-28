@@ -121,8 +121,19 @@ PYBIND11_MODULE(_plant, m) {
   //----------------------------------------------------------------------------------------------------
   // methods
 
-  // m_transforms.def("dot_v3f", &plant::core::transforms::dot_v3f);
-  // m_transforms.def("cross_v3f", &plant::core::transforms::cross_v3f);
+  m_transforms.def(
+    "dot_v3f",
+    &plant::core::transforms::dot_v3f,
+    py::arg("u"),
+    py::arg("v")
+  );
+
+  m_transforms.def(
+    "cross_v3f",
+    &plant::core::transforms::cross_v3f,
+    py::arg("u"),
+    py::arg("v")
+  );
 
   //====================================================================================================
   // create the "sensors" module and add the imu to it

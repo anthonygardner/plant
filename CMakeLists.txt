@@ -8,55 +8,54 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_BUILD_TYPE Debug)
 
+set(YAML_BUILD_SHARED_LIBS ON)
+
 cmake_policy(SET CMP0048 NEW)
 
 project(
-  _plant
+  plant
+  VERSION 1.0
   DESCRIPTION "Python Library for Autonomous Navigation and Tracking"
   LANGUAGES C CXX
 )
 
 #===============================================================================
-# external packages
+# configure dependencies
 
 add_subdirectory(extern/googletest)
 add_subdirectory(extern/raylib)
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/yaml-cpp)
 
-set(raylib_DIR "${CMAKE_SOURCE_DIR}/extern/raylib/cmake")
-set(yaml-cpp_DIR "{CMAKE_SOURCE_DIR}/extern/yaml-cpp")
-
-if (NOT TARGET raylib)
-    find_package(raylib REQUIRED)
-endif()
+set(pybind11_DIR "${PROJECT_SOURCE_DIR}/extern/pybind11")
+set(raylib_DIR "${PROJECT_SOURCE_DIR}/extern/raylib/cmake")
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+find_package(raylib REQUIRED)
 
-include_directories(${Python3_INCLUDE_DIRS})
 include_directories(${pybind11_INCLUDE_DIR})
-
-if (NOT TARGET yaml-cpp)
-    find_package(yaml-cpp REQUIRED)
-endif()
-
-include_directories(${YAML_CPP_INCLUDE_DIRS})
+include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${YAML_CPP_INCLUDE_DIR})
 
 #===============================================================================
 # build plant
 
 set(SOURCES ${PROJECT_SOURCE_DIR}/src/plant.cc)
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} ${YAML_CPP_LIBRARIES})
+add_library(
+    ${PROJECT_NAME}
+    STATIC
+    ${SOURCES}
+)
 
 pybind11_add_module(
-  plant
-  ${PROJECT_SOURCE_DIR}/src/plant.cc
-  ${PROJECT_SOURCE_DIR}/src/core/transforms.cc
-  ${PROJECT_SOURCE_DIR}/src/sensors/imu.cc
+    _plant
+    ${PROJECT_SOURCE_DIR}/src/plant.cc
+    ${PROJECT_SOURCE_DIR}/src/core/transforms.cc
+    ${PROJECT_SOURCE_DIR}/src/sensors/imu.cc
 )
+
+target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
 
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(${PROJECT_NAME} yaml-cpp)
@@ -66,6 +65,8 @@ if (APPLE)
     target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
     target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
 endif()
+
+target_link_libraries(_plant PRIVATE ${PROJECT_NAME})
 
 #===============================================================================
 # build examples
@@ -77,19 +78,18 @@ add_subdirectory(examples/raylib)
 
 enable_testing()
 
-#add_executable(
-#  parser_test
-#  ${CMAKE_SOURCE_DIR}/tests/parser_test.cc
-#  ${CMAKE_SOURCE_DIR}/src/utils/parser.cc
-#)
+add_executable(
+  parser_test
+  ${PROJECT_SOURCE_DIR}/tests/parser_test.cc
+  ${PROJECT_SOURCE_DIR}/src/utils/parser.cc
+)
 
-#target_link_libraries(
-#  parser_test
-#  PRIVATE
-#  GTest::gtest_main
-#  GTest::gmock_main
-#  ${YAML_CPP_LIBRARIES}
-#)
+target_link_libraries(
+  parser_test
+  GTest::gtest_main
+  GTest::gmock_main
+  yaml-cpp
+)
 
 add_executable(
   v3f_test
@@ -104,5 +104,5 @@ target_link_libraries(
 
 include(GoogleTest)
 
-#gtest_discover_tests(parser_test)
+gtest_discover_tests(parser_test)
 gtest_discover_tests(v3f_test)
