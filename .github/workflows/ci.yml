@@ -18,7 +18,10 @@ jobs:
 
       - name: Install Linux packages
         run: |
-          sudo apt-get install clang-format libxrandr-dev
+          sudo apt-get install -y \
+            clang-format \
+            libxinerama-dev \
+            libxrandr-dev
 
       - name: Install Python 3.12
         uses: actions/setup-python@v3
