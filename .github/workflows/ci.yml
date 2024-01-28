@@ -16,28 +16,39 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up clang-format
+      - name: Install clang-format
         run: |
           sudo apt-get install clang-format
 
-      - name: Set up Python 3.12
+      - name: Install Python 3.12
         uses: actions/setup-python@v3
         with:
           python-version: "3.12"
 
-      - name: Upgrade pip
+      - name: Build C++
         run: |
-          python3 -m pip install --upgrade pip
+          git submodule update --init --recursive
+          cmake -S . -B build
+          cmake --build build --target install
 
-      # - name: Build and test
-      #   run: |
-      #     ./scripts/build-ci.sh
-      #     ./scripts/test.sh
+      - name: Build Python
+        run: |
+          python -m pip install --upgrade build pip setuptools
+          python -m pip install -r $CWD/requirements.txt
+          python -m build . && python3 -m pip install .
 
-      - name: Run clang-format
+      - name: Run GoogleTest
+        run: |
+          cd build && ctest
+
+      - name: Run pytest
+        run: |
+          ./scripts/test.sh
+    
+      - name: Lint C++
         run: |
           find . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
 
-      # - name: Run ruff
-      #   run: |
-      #     ruff tests
+      - name: Lint Python
+        run: |
+          ruff tests
