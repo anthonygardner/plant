@@ -19,7 +19,9 @@ jobs:
       - name: Install Linux packages
         run: |
           sudo apt-get install -y \
+            build-essential \
             clang-format \
+            cmake \
             libasound2-dev \
             libgl1-mesa-dev \
             libx11-dev \
