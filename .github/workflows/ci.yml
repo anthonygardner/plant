@@ -16,9 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install clang-format
+      - name: Install Linux packages
         run: |
-          sudo apt-get install clang-format
+          sudo apt-get install clang-format libxrandr-dev
 
       - name: Install Python 3.12
         uses: actions/setup-python@v3
