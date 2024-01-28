@@ -20,8 +20,14 @@ jobs:
         run: |
           sudo apt-get install -y \
             clang-format \
+            libasound2-dev \
+            libgl1-mesa-dev \
+            libx11-dev \
+            libxcursor-dev \
+            libxi-dev \
             libxinerama-dev \
-            libxrandr-dev
+            libxrandr-dev \
+            mesa-common-dev \
 
       - name: Install Python 3.12
         uses: actions/setup-python@v3
