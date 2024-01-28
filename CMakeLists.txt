@@ -1,49 +1,100 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.15)
 
 set(CMAKE_C_COMPILER /usr/bin/gcc)
 set(CMAKE_CXX_COMPILER /usr/bin/g++)
 
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 20)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+set(YAML_BUILD_SHARED_LIBS ON)
 
 cmake_policy(SET CMP0048 NEW)
 
 project(
   plant
+  VERSION 1.0
   DESCRIPTION "Python Library for Autonomous Navigation and Tracking"
   LANGUAGES C CXX
 )
 
-add_subdirectory(extern/googletest)
-add_subdirectory(extern/pybind11)
+#===============================================================================
+# configure dependencies
 
-pybind11_add_module(
-  _plant
-  ${CMAKE_SOURCE_DIR}/src/plant.cc
-  ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
-  ${CMAKE_SOURCE_DIR}/src/sensors/imu.cc
-)
+add_subdirectory(extern/googletest)
+add_subdirectory(extern/raylib)
+add_subdirectory(extern/pybind11)
+add_subdirectory(extern/yaml-cpp)
+
+set(pybind11_DIR "${PROJECT_SOURCE_DIR}/extern/pybind11")
+set(raylib_DIR "${PROJECT_SOURCE_DIR}/extern/raylib/cmake")
+
+find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+find_package(raylib REQUIRED)
+
+include_directories(${pybind11_INCLUDE_DIR})
+include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${YAML_CPP_INCLUDE_DIR})
 
 #===============================================================================
-# googletest
+# build plant
+
+set(SOURCES ${PROJECT_SOURCE_DIR}/src/plant.cc)
+
+add_library(
+    ${PROJECT_NAME}
+    STATIC
+    ${SOURCES}
+)
+
+pybind11_add_module(
+    _plant
+    ${PROJECT_SOURCE_DIR}/src/plant.cc
+    ${PROJECT_SOURCE_DIR}/src/core/transforms.cc
+    ${PROJECT_SOURCE_DIR}/src/sensors/imu.cc
+)
+
+target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
+
+target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} yaml-cpp)
+
+if (APPLE)
+    target_link_libraries(${PROJECT_NAME} "-framework IOKit")
+    target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
+    target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
+endif()
+
+target_link_libraries(_plant PRIVATE ${PROJECT_NAME})
+
+#===============================================================================
+# build examples
+
+add_subdirectory(examples/raylib)
+
+#===============================================================================
+# build googletest
 
 enable_testing()
 
 add_executable(
   parser_test
-  ${CMAKE_SOURCE_DIR}/tests/parser_test.cc
-  ${CMAKE_SOURCE_DIR}/src/utils/parser.cc
+  ${PROJECT_SOURCE_DIR}/tests/parser_test.cc
+  ${PROJECT_SOURCE_DIR}/src/utils/parser.cc
 )
 
 target_link_libraries(
   parser_test
   GTest::gtest_main
   GTest::gmock_main
+  yaml-cpp
 )
 
 add_executable(
   v3f_test
-  ${CMAKE_SOURCE_DIR}/tests/v3f_test.cc
-  ${CMAKE_SOURCE_DIR}/src/core/transforms.cc
+  ${PROJECT_SOURCE_DIR}/tests/v3f_test.cc
+  ${PROJECT_SOURCE_DIR}/src/core/transforms.cc
 )
 
 target_link_libraries(
