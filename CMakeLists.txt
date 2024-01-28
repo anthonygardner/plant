@@ -28,10 +28,8 @@ add_subdirectory(extern/pybind11)
 add_subdirectory(extern/yaml-cpp)
 
 set(pybind11_DIR "${PROJECT_SOURCE_DIR}/extern/pybind11")
-set(raylib_DIR "${PROJECT_SOURCE_DIR}/extern/raylib/cmake")
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
-find_package(raylib REQUIRED)
 
 include_directories(${pybind11_INCLUDE_DIR})
 include_directories(${Python3_INCLUDE_DIRS})
