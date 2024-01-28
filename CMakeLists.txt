@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-set(YAML_BUILD_SHARED_LIBS ON)
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
 cmake_policy(SET CMP0048 NEW)
 
