@@ -6,11 +6,7 @@ namespace plant {
 namespace core {
 namespace types {
 
-enum class AltType {
-    HeightAboveGeoid,
-    HeightAboveEllipsoid,
-    MeanSeaLevel
-};
+enum class AltType { HeightAboveGeoid, HeightAboveEllipsoid, MeanSeaLevel };
 
 enum class ReferenceFrame {
     EarthCenteredInertial,
@@ -76,8 +72,8 @@ typedef struct {
     AttQuat q;
 } State;
 
-} // namespace types
-} // namespace core
-} // namespace plant
+}  // namespace types
+}  // namespace core
+}  // namespace plant
 
 // TODO: add ndarray

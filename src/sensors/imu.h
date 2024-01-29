@@ -8,13 +8,13 @@ namespace plant {
 namespace sensors {
 
 class IMU {
- public:
-   float wx;
-   float wy;
+   public:
+    float wx;
+    float wy;
 
-  IMU() : wx(0.0), wy(0.0) {};
-  IMU(float wx, float wy) : wx(wx), wy(wy) {};
+    IMU() : wx(0.0), wy(0.0){};
+    IMU(float wx, float wy) : wx(wx), wy(wy){};
 };
 
-} // namespace sensors
-} // namespace plant
+}  // namespace sensors
+}  // namespace plant

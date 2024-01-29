@@ -60,14 +60,11 @@ jobs:
       - name: Run pytest
         run: |
           source .venv/bin/activate
-          ls
-          ls api
-          ls api/plant
           python -m pytest tests
     
       - name: Lint C++
         run: |
-          find . -iname *.c -o -iname *.cc -o -iname *.h | xargs clang-format -i
+          find src -name '*.c' -o -name '*.cc' -o -name '*.h' | xargs clang-format -i
 
       - name: Lint Python
         run: |

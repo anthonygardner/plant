@@ -12,6 +12,6 @@ float dot_v3f(types::Vector3f u, types::Vector3f v);
 
 types::Vector3f cross_v3f(types::Vector3f u, types::Vector3f v);
 
-} // namespace transforms
-} // namespace core
-} // namespace plant
+}  // namespace transforms
+}  // namespace core
+}  // namespace plant
