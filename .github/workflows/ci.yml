@@ -41,7 +41,7 @@ jobs:
           git submodule update --init --recursive
           cmake -S . -B build
           cmake --build build --target install
-          mv build/_plant*.so api/_plant.so
+          mv build/_plant*.so api/plant/_plant.so
 
       - name: Build Python
         run: |
@@ -60,6 +60,9 @@ jobs:
       - name: Run pytest
         run: |
           source .venv/bin/activate
+          ls
+          ls api
+          ls api/plant
           python -m pytest tests
     
       - name: Lint C++
