@@ -54,7 +54,7 @@ jobs:
 
       - name: Run pytest
         run: |
-          ./scripts/test.sh
+          python -m pytest tests
     
       - name: Lint C++
         run: |
