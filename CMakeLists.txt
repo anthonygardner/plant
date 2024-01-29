@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-set(YAML_BUILD_SHARED_LIBS ON)
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
 cmake_policy(SET CMP0048 NEW)
 
@@ -22,16 +22,14 @@ project(
 #===============================================================================
 # configure dependencies
 
-add_subdirectory(extern/googletest)
-add_subdirectory(extern/raylib)
+add_subdirectory(extern/googletest EXCLUDE_FROM_ALL)
+add_subdirectory(extern/raylib EXCLUDE_FROM_ALL)
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/yaml-cpp)
 
 set(pybind11_DIR "${PROJECT_SOURCE_DIR}/extern/pybind11")
-set(raylib_DIR "${PROJECT_SOURCE_DIR}/extern/raylib/cmake")
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
-find_package(raylib REQUIRED)
 
 include_directories(${pybind11_INCLUDE_DIR})
 include_directories(${Python3_INCLUDE_DIRS})
