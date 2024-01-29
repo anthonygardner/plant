@@ -23,7 +23,7 @@ project(
 # configure dependencies
 
 add_subdirectory(extern/googletest EXCLUDE_FROM_ALL)
-add_subdirectory(extern/raylib)
+add_subdirectory(extern/raylib EXCLUDE_FROM_ALL)
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/yaml-cpp)
 
