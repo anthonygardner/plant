@@ -44,18 +44,22 @@ jobs:
 
       - name: Build Python
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           python -m pip install --upgrade build pip setuptools
           python -m pip install -r requirements.txt
-          python -m build . && python -m pip install .
-          pip list
+          python -m build .
+          python -m pip install .
+          gcc src/utils/cli.c -o .venv/bin/plant-cli
 
       - name: Run GoogleTest
         run: |
           cd build && ctest
 
-          #- name: Run pytest
-          #run: |
-          #python -m pytest tests
+      - name: Run pytest
+        run: |
+          source .venv/bin/activate
+          python -m pytest tests
     
       - name: Lint C++
         run: |
@@ -63,4 +67,5 @@ jobs:
 
       - name: Lint Python
         run: |
+          source .venv/bin/activate
           ruff tests
