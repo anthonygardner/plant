@@ -1,5 +1,7 @@
 # plant
 
+![Alt](https://repobeats.axiom.co/api/embed/7b396ab12aae81b774176805c20b9f1be8827ccb.svg "Repobeats analytics image")
+
 ## Overview
 
 `plant` is a Python Library for Autonomous Navigation and Tracking research.
