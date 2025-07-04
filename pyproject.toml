@@ -18,11 +18,22 @@ classifiers = [
 ]
 dependencies = [
   "commitizen>=4.8.3",
-  "pytest",
+  "pytest>=7.0.0",
 ]
 
-# [tool.setuptools.packages.find]
-# where = ["api"]
+[project.scripts]
+plant = "plant.cli:app"
+
+[project.optional-dependencies]
+cli = [
+    "rich>=10.0.0",
+    "tabulate>=0.9.0",
+    "typer>=0.16.0",
+]
+
+all = [
+    "plant[cli]"
+]
 
 [tool.setuptools]
 package-dir = {"" = "api"}
