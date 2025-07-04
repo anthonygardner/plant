@@ -1,5 +1,6 @@
 def test_import_plant():
     import plant
+    print(dir(plant))
 
 
 def test_from_plant_import_transforms():

@@ -30,5 +30,3 @@ mv $BUILD_DIR/_plant*.so $API_DIR/_plant.so
 python3 -m pip install --upgrade build pip setuptools
 python3 -m pip install -r $CWD/requirements.txt
 python3 -m build $CWD && python3 -m pip install $CWD
-
-gcc $CWD/src/cli.c -o $VENV_DIR/bin/plant-cli

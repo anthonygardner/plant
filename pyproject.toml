@@ -12,7 +12,7 @@ maintainers = [
   { name = "Anthony Gardner" },
 ]
 description = "Python Library for Autonomous Navigation and Tracking"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 classifiers = [
   "Programming Language :: Python :: 3",
 ]
@@ -20,11 +20,15 @@ dependencies = [
   "pytest",
 ]
 
-[tool.setuptools.packages.find]
-where = ["api"]
+# [tool.setuptools.packages.find]
+# where = ["api"]
+
+[tool.setuptools]
+package-dir = {"" = "api"}
+packages = ["plant"]
 
 [tool.setuptools.package-data]
-plant = ["_plant.so"]
+plant = ["*.so"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
