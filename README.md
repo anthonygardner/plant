@@ -12,7 +12,7 @@
 
 ![Alt](https://repobeats.axiom.co/api/embed/7b396ab12aae81b774176805c20b9f1be8827ccb.svg "Repobeats analytics image")
 
-## Initial Build
+## Build Instructions
 
 ```shell
 git submodule update --init --recursive
@@ -22,14 +22,14 @@ cmake --build build --target install
 
 ## Unit Tests
 
-###### C++
+##### C++
 
 ```shell
 cd build
 ctest
 ```
 
-###### Python
+##### Python
 
 ```shell
 uv venv
