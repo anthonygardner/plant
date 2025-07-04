@@ -17,6 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3",
 ]
 dependencies = [
+  "commitizen>=4.8.3",
   "pytest",
 ]
 
@@ -40,3 +41,11 @@ ignore = ["F401"]
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "uv"
+update_changelog_on_bump = true
+major_version_zero = true

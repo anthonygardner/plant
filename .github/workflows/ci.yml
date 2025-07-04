@@ -69,4 +69,4 @@ jobs:
       - name: Lint Python
         run: |
           source .venv/bin/activate
-          ruff tests
+          ruff check tests
