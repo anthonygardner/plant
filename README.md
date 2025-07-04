@@ -1,6 +1,7 @@
 # plant
 
-![Alt](https://repobeats.axiom.co/api/embed/7b396ab12aae81b774176805c20b9f1be8827ccb.svg "Repobeats analytics image")
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
 ## Overview
 
@@ -9,13 +10,9 @@
 > [!NOTE]
 > This repository is currently under construction.
 
-## Tech Stack
+![Alt](https://repobeats.axiom.co/api/embed/7b396ab12aae81b774176805c20b9f1be8827ccb.svg "Repobeats analytics image")
 
-![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-
-## Build Instructions
+## Initial Build
 
 ```shell
 git submodule update --init --recursive
@@ -23,23 +20,21 @@ cmake -S . -B build
 cmake --build build --target install
 ```
 
-## Running Tests / Examples
+## Unit Tests
 
-###### GoogleTest Suite
-
-```shell
-cd build && ctest
-```
-
-###### Python Test Suite
+###### C++
 
 ```shell
-./scripts/test.sh
+cd build
+ctest
 ```
 
-###### Raylib Example
+###### Python
 
 ```shell
-cd build/examples/raylib
-./raylib_example
+uv venv
+uv pip install -r requirements.txt
+uv pip install .
+uv run pytest
 ```
+
