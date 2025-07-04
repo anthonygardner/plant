@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "../src/core/transforms.h"
-#include "../src/core/types.h"
+#include "plant/core/transforms.hpp"
+#include "plant/core/types.hpp"
 
 TEST(Vector3fTest, AdditionOperator) {
   plant::core::types::Vector3f u = {1.0, 2.0, 3.0};

@@ -1,6 +1,6 @@
 /** @file Source file for common reference frame transformations */
 
-#include "./transforms.h"
+#include "plant/core/transforms.hpp"
 
 namespace plant {
 namespace core {

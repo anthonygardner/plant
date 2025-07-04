@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "../core/types.h"
+#include "plant/core/types.hpp"
 
 namespace plant {
 namespace sensors {

@@ -1,3 +1,3 @@
 /** @file Source file for IMU sensor */
 
-#include "./imu.h"
+#include "plant/sensors/imu.hpp"
