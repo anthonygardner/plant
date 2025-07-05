@@ -14,19 +14,12 @@
 
 ## Build Instructions
 
+##### C++
+
 ```shell
 git submodule update --init --recursive
 cmake -S . -B build
 cmake --build build --target install
-```
-
-## Unit Tests
-
-##### C++
-
-```shell
-cd build
-ctest
 ```
 
 ##### Python
@@ -34,7 +27,20 @@ ctest
 ```shell
 uv venv
 uv pip install -r requirements.txt
-uv pip install .
+uv pip install -e .
+```
+
+## Unit Tests
+
+##### C++
+
+```shell
+cd build && ctest && cd -
+```
+
+##### Python
+
+```shell
 uv run pytest
 ```
 
