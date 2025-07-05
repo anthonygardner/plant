@@ -11,6 +11,7 @@
 #include "plant/core/transforms.hpp"
 #include "plant/core/types.hpp"
 #include "plant/math/quaternion.hpp"
+#include "plant/math/vector.hpp"
 #include "plant/sensors/imu.hpp"
 
 namespace py = pybind11;
@@ -33,6 +34,20 @@ PYBIND11_MODULE(_plant, m) {
         .def(py::self + py::self)
         .def("__repr__", [](const plant::math::Quaternion& q) {
             return "Quaternion(" + std::to_string(q.w) + ", " + std::to_string(q.x) + ", " + std::to_string(q.y) + ", " + std::to_string(q.z) + ")";
+        });
+
+    py::class_<plant::math::Vector>(m_math, "Vector")
+        .def(py::init<>())
+        .def(py::init<float, float, float>(), py::arg("x"), py::arg("y"), py::arg("z"))
+        .def_readwrite("x", &plant::math::Vector::x)
+        .def_readwrite("y", &plant::math::Vector::y)
+        .def_readwrite("z", &plant::math::Vector::z)
+        .def("normalize", &plant::math::Vector::normalize)
+        .def(py::self + py::self)
+        .def(py::self - py::self)
+        .def(py::self * py::self)
+        .def("__repr__", [](const plant::math::Vector& v) {
+            return "Vector(" + std::to_string(v.x) + ", " + std::to_string(v.y) + ", " + std::to_string(v.z) + ")";
         });
 
     // Core types module

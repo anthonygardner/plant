@@ -20,13 +20,20 @@ def _():
 
 @app.cell
 def _():
-    from plant.math import Quaternion
-    return (Quaternion,)
+    from plant.math import Quaternion, Vector
+    return Quaternion, Vector
 
 
 @app.cell
-def _(Quaternion, np):
-    q = Quaternion(0, -1, 1, -1)
+def _(Vector):
+    u = Vector(0, 1, 2)
+    v = Vector(-1, 1, 1)
+    return (v,)
+
+
+@app.cell
+def _(Quaternion, np, v):
+    q = Quaternion(0, v.x, v.y, v.z)
     qv = np.array([q.x, q.y, q.z])
     return (qv,)
 
@@ -68,6 +75,11 @@ def _(go, np, qv):
     )
 
     fig
+    return
+
+
+@app.cell
+def _():
     return
 
 

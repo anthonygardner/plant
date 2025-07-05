@@ -38,3 +38,8 @@ uv pip install .
 uv run pytest
 ```
 
+## Scratchpad
+
+```shell
+uv run marimo edit notebooks/sim.py --host 0.0.0.0
+```

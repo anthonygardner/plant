@@ -48,6 +48,7 @@ include_directories(${Python3_INCLUDE_DIRS})
 add_library(plant_math STATIC)
 target_sources(plant_math PRIVATE
     src/math/quaternion.cpp
+    src/math/vector.cpp
 )
 target_include_directories(plant_math PUBLIC ${PLANT_INCLUDE_DIR})
 
