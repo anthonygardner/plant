@@ -10,6 +10,7 @@
 
 #include "plant/core/transforms.hpp"
 #include "plant/core/types.hpp"
+#include "plant/filters/kalman_filter.hpp"
 #include "plant/math/quaternion.hpp"
 #include "plant/math/vector.hpp"
 #include "plant/sensors/imu.hpp"
@@ -18,6 +19,15 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(_plant, m) {
     m.doc() = "Python Library for Autonomous Navigation and Tracking (PLANT)";
+
+    // Filters module
+    auto m_filters = m.def_submodule("filters", "Filters");
+
+    py::class_<plant::filters::KalmanFilter>(m_filters, "KalmanFilter")
+        .def(py::init<plant::math::Vector>(), py::arg("x"))
+        .def_readwrite("x", &plant::filters::KalmanFilter::x)
+        .def_readwrite("y", &plant::filters::KalmanFilter::y)
+        .def("predict", &plant::filters::KalmanFilter::predict);
 
     // Math module
     auto m_math = m.def_submodule("math", "Math primitives");

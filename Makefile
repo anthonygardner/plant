@@ -1,5 +1,10 @@
+.PHONY: build clean install
+
 build:
-	mkdir -p build && cd build && cmake .. && cmake --build . -j 16
+	cmake --build build --target install
 
 clean:
 	rm -fr build
+
+install:
+	uv pip install -e .

@@ -6,6 +6,7 @@ except ImportError as e:
 
 # Make submodules available for direct import
 import sys
+sys.modules['plant.filters'] = filters
 sys.modules['plant.math'] = math
 sys.modules['plant.sensors'] = sensors
 sys.modules['plant.transforms'] = transforms

@@ -20,15 +20,23 @@ def _():
 
 @app.cell
 def _():
+    from plant.filters import KalmanFilter
     from plant.math import Quaternion, Vector
-    return Quaternion, Vector
+    return KalmanFilter, Quaternion, Vector
 
 
 @app.cell
 def _(Vector):
     u = Vector(0, 1, 2)
     v = Vector(-1, 1, 1)
-    return (v,)
+    return u, v
+
+
+@app.cell
+def _(KalmanFilter, u):
+    kf = KalmanFilter(u)
+    kf.predict()
+    return
 
 
 @app.cell

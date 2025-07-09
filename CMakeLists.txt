@@ -52,12 +52,20 @@ target_sources(plant_math PRIVATE
 )
 target_include_directories(plant_math PUBLIC ${PLANT_INCLUDE_DIR})
 
+add_library(plant_filters STATIC)
+target_sources(plant_filters PRIVATE
+    src/filters/kalman_filter.cpp
+    src/filters/extended_kalman_filter.cpp
+)
+target_include_directories(plant_filters PUBLIC ${PLANT_INCLUDE_DIR})
+
 add_library(plant_core STATIC)
 target_sources(plant_core PRIVATE
     src/core/transforms.cpp
 )
 target_include_directories(plant_core PUBLIC ${PLANT_INCLUDE_DIR})
 target_link_libraries(plant_core PUBLIC plant_math)
+target_link_libraries(plant_core PUBLIC plant_filters)
 
 add_library(plant_sensors STATIC)
 target_sources(plant_sensors PRIVATE
