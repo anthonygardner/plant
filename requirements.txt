@@ -17,6 +17,7 @@ decorator==5.2.1
 distlib==0.3.9
 docutils==0.21.2
 executing==2.2.0
+fancycompleter==0.11.1
 filelock==3.18.0
 h11==0.16.0
 identify==2.6.12
@@ -48,6 +49,7 @@ packaging==25.0
 pandas==2.3.0
 parso==0.8.4
 pathspec==0.12.1
+pdbpp==0.11.6
 pexpect==4.9.0
 -e file:///home/anthonygardner/github/plant
 platformdirs==4.3.8
@@ -61,6 +63,7 @@ ptyprocess==0.7.0
 pure-eval==0.2.3
 pygments==2.19.2
 pymdown-extensions==10.16
+pyrepl==0.11.3.post1
 pytest==8.4.1
 pytest-cov==6.2.1
 python-dateutil==2.9.0.post0

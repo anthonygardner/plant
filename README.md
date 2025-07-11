@@ -12,7 +12,7 @@
 
 ![Alt](https://repobeats.axiom.co/api/embed/7b396ab12aae81b774176805c20b9f1be8827ccb.svg "Repobeats analytics image")
 
-## Build Instructions
+## Builds
 
 ##### C++
 
@@ -20,6 +20,12 @@
 git submodule update --init --recursive
 cmake -S . -B build
 cmake --build build --target install
+```
+
+or
+
+```shell
+make build.cpp
 ```
 
 ##### Python
@@ -30,22 +36,28 @@ uv pip install -r requirements.txt
 uv pip install -e .
 ```
 
+or
+
+```shell
+make build.python
+```
+
 ## Unit Tests
 
 ##### C++
 
 ```shell
-cd build && ctest && cd -
+make test.cpp
 ```
 
 ##### Python
 
 ```shell
-uv run pytest
+make test.python
 ```
 
 ## Scratchpad
 
 ```shell
-uv run marimo edit notebooks/sim.py --host 0.0.0.0
+make notebook
 ```
