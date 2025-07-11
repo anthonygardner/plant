@@ -3,6 +3,8 @@
 #include <cmath>
 #include <iostream>
 
+#include "plant/math/matrix.hpp"
+
 namespace plant::math {
 
 class Quaternion {
@@ -25,7 +27,7 @@ public:
 
     // Other operations
     Quaternion normalize() const;
-    Quaternion toMatrix() const;
+    Matrix<3, 3> to_matrix() const;
 };
 
 }  // namespace plant::math

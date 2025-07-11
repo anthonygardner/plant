@@ -21,15 +21,23 @@ def _():
 @app.cell
 def _():
     from plant.filters import KalmanFilter
-    from plant.math import Quaternion, Vector
-    return KalmanFilter, Quaternion, Vector
+    from plant.math import Matrix, Quaternion, Vector
+    return KalmanFilter, Matrix, Quaternion, Vector
 
 
 @app.cell
 def _(Vector):
     u = Vector(0, 1, 2)
     v = Vector(-1, 1, 1)
+    v
     return u, v
+
+
+@app.cell
+def _(Matrix):
+    m = Matrix(3, 3)
+    m
+    return
 
 
 @app.cell
@@ -43,6 +51,9 @@ def _(KalmanFilter, u):
 def _(Quaternion, np, v):
     q = Quaternion(0, v.x, v.y, v.z)
     qv = np.array([q.x, q.y, q.z])
+
+    A = q.to_matrix()
+    A
     return (qv,)
 
 
